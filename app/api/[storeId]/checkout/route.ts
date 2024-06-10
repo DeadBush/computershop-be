@@ -4,7 +4,6 @@ import { stripe } from "@/lib/stripe";
 import { db } from "@/lib/firebase";
 import {Product} from "@/type-db";
 import {addDoc,collection,doc,serverTimestamp,updateDoc} from "firebase/firestore"
-import { url } from "inspector";
 
 const corsHeaders = {
     "Access-Control-Allow-Origin" : "*",
@@ -23,11 +22,11 @@ export const POST=async(
     const {products, userId}=await req.json();
     const line_items : Stripe.Checkout.SessionCreateParams.LineItem[] = [];
 
-    products.array.forEach((item:Product) => {
+    products.forEach((item:Product) => {
         line_items.push({
             quantity:item.quantity,
             price_data: {
-                currency:"VND",
+                currency:"USD",
                 product_data:{
                     name:item.name,
                 },
@@ -52,7 +51,7 @@ export const POST=async(
   await updateDoc(doc(db,"stores",params.storeId,"orders",id),{
     ...orderData,
     id,
-    updatedAt:serverTimestamp(),
+    updateAt:serverTimestamp(),
   });
 
   const session = await stripe.checkout.sessions.create({

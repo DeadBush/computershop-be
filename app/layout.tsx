@@ -8,7 +8,7 @@ import { ToastProvider } from "@/providers/toast-provider";
 const poppins = Poppins({ subsets: ["latin"],weight :["100","200","300","400","500","600","700","800","900"] });
 
 export const metadata: Metadata = {
-  title: "Car-Multi-Store Admin Portal",
+  title: "Admin Portal",
   description: "Manage yout store on a single place",
 };
 
