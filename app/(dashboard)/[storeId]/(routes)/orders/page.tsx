@@ -30,7 +30,7 @@ const OrdersPage = async ({params}: {params: {storeId : string}}) => {
 
         }, 0)
     ),
-        images: item.orderItems.map((item) => item.images.url[0]), 
+        images: item.orderItems.map((item) => item.images[0].url), 
         createAt: item.createAt ? format(item.createAt.toDate(), 'MMMM do, yyyy'): '',
     }));
 

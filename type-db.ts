@@ -55,7 +55,7 @@ export interface Product {
     name: string,
     price: number,
     quantity?: number,
-    images: { url: string[] },
+    images: { url: string}[],
     isFeatured: boolean,
     isArchived: boolean,
     category: string,
